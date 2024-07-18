@@ -4,9 +4,11 @@ import { TxBody } from "cosmjs-types/cosmos/tx/v1beta1/tx";
 import type protobuf from "protobufjs";
 
 import { MsgMultiSend, MsgSend } from "cosmjs-types/cosmos/bank/v1beta1/tx";
+import { MsgExecuteContract } from "cosmjs-types/cosmwasm/wasm/v1/tx";
 
 export const bankTypes: ReadonlyArray<[string, GeneratedType]> = [
   ["/cosmos.bank.v1beta1.MsgMultiSend", MsgMultiSend],
+  ["/cosmwasm.wasm.v1.MsgExecuteContract", MsgExecuteContract],
   ["/cosmos.bank.v1beta1.MsgSend", MsgSend],
 ];
 

@@ -12,7 +12,7 @@ import { encodeSecp256k1Signature } from '../crypto/signature';
 import { encode } from '../messages/registry';
 
 export const getAccount = async (address: string) => {
-    const accountRequest = await fetch(`https://go.getblock.io/df1ba16c91be41b1a3847b8592e925f4/cosmos/auth/v1beta1/accounts/${address}`)
+    const accountRequest = await fetch(`https://sei-api.polkachu.com/cosmos/auth/v1beta1/accounts/${address}`)
 
     const { account } = await accountRequest.json()
     if(!account){
@@ -122,7 +122,7 @@ export const signAndBroadcast = async (
     const { account_number, sequence } = await getAccount(senderAddress)
     console.log("🚀 ~ sequence:", sequence)
     console.log("🚀 ~ account_number:", account_number)
-    const chainId = 'cosmoshub-4'
+    const chainId = 'pacific-1'
 
     // const  signerData = {
     //     accountNumber: account_number,
@@ -187,7 +187,7 @@ export const signAndBroadcast = async (
 
     console.log("🚀 ~ Buffer.from(txBytes).toString('hex'):", toBase64(txBytes))
 
-    const broadcastTx = await fetch('https://go.getblock.io/ffc5f2c4b42d4f92b1b4c0e212842a57',{
+    const broadcastTx = await fetch('https://sei-rpc.polkachu.com/',{
         method: 'POST',
         body: JSON.stringify({
             "jsonrpc": "2.0",
@@ -208,6 +208,8 @@ export const signAndBroadcast = async (
 
     const data = await broadcastTx.json()
     console.log("🚀 ~ data:", data)
+
+    return data?.result
 }
 
 // const sign = async (address: string, privateKey: string) => {

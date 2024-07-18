@@ -10,6 +10,7 @@ import { encodeSecp256k1Signature } from "../crypto/signature";
 import { Slip10, Slip10Curve, stringToPath } from "../crypto/slip10";
 import { encode } from "../messages/registry";
 import { getAccount, makeAuthInfoBytes, makeSignBytes, makeSignDoc } from "../signing";
+import { MsgExecuteContract } from "cosmjs-types/cosmwasm/wasm/v1/tx";
 
 export class Cosmjsclass{
     constructor(){
@@ -168,5 +169,14 @@ export class Cosmjsclass{
       const { result } = await broadcastTx.json()
 
       return result?.hash || ''
+    }
+
+    async executeMultiple(
+      senderAddress: string,
+      instructions: readonly any[],
+      fee: any,
+      memo = "",
+    ): Promise<any> {
+      
     }
 }
